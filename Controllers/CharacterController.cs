@@ -20,20 +20,20 @@ namespace uwebapi.Controllers
         [HttpGet]
         [Route("GetAll")]
         //[HttpGet("GetAll")]
-        public ActionResult<Character> Get()
+        public async Task<ActionResult<List<Character>>> Get()
         {
-            return Ok(_characterservice.GetAllCharacters());
+            return Ok(await _characterservice.GetAllCharacters());
         }
         [HttpGet("{id}")]
-        public ActionResult<Character> GetSingle(int id)
+        public async Task<ActionResult<Character>> GetSingle(int id)
         {
 
-            return Ok(_characterservice.GetCharacterById(id));
+            return Ok(await _characterservice.GetCharacterById(id));
         }
         [HttpPost]
-        public ActionResult<List<Character>> AddCharacter(Character newCharacter)
+        public async Task<ActionResult<List<Character>>> AddCharacter(Character newCharacter)
         {
-            return Ok(_characterservice.AddCharacter(newCharacter));
+            return Ok(await _characterservice.AddCharacter(newCharacter));
 
 
         }
