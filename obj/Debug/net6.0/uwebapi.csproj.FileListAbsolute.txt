@@ -25,3 +25,5 @@ C:\Users\benhur19\Desktop\uwebapi\obj\Debug\net6.0\uwebapi.dll
 C:\Users\benhur19\Desktop\uwebapi\obj\Debug\net6.0\ref\uwebapi.dll
 C:\Users\benhur19\Desktop\uwebapi\obj\Debug\net6.0\uwebapi.pdb
 C:\Users\benhur19\Desktop\uwebapi\obj\Debug\net6.0\uwebapi.genruntimeconfig.cache
+C:\Users\benhur19\Desktop\uwebapi\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\benhur19\Desktop\uwebapi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

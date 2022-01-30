@@ -1,3 +1,5 @@
+using AutoMapper;
+using uwebapi.Dtos.Character;
 using uwebapi.Models;
 
 namespace uwebapi.Services.CharacterService
@@ -9,20 +11,37 @@ namespace uwebapi.Services.CharacterService
             new Character(),
             new Character { Id =1, Name = "Sam"}
         };
-        public async Task<List<Character>> AddCharacter(Character newCharacter)
+        private readonly IMapper _mapper;
+        public CharacterService(IMapper mapper)
         {
-            characters.Add(newCharacter);
-            return characters;
+            _mapper = mapper;
+
         }
 
-        public async Task<List<Character>> GetAllCharacters()
+
+        public async Task<ServiceResponse<List<GetCharacterDto>>> AddCharacter(AddCharacterDTo newCharacter)
         {
-           return characters;
+            var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+
+            characters.Add(_mapper.Map<Character>(newCharacter));
+            serviceResponse.Data = characters.Select(i=> _mapper.Map<GetCharacterDto>(i)).ToList();
+            return serviceResponse;
         }
 
-        public async Task<Character> GetCharacterById(int id)
+        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
         {
-            return characters.FirstOrDefault(c=> c.Id == id);
+            var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+            serviceResponse.Data = characters.Select(i=> _mapper.Map<GetCharacterDto>(i)).ToList();
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id)
+        {
+            var serviceResponse = new ServiceResponse<GetCharacterDto>();
+
+            serviceResponse.Data =_mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c => c.Id == id));
+            return serviceResponse;
         }
     }
 }
