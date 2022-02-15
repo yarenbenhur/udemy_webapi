@@ -9,7 +9,7 @@ namespace uwebapi
         public AutoMapperProfile()
         {
             CreateMap<Character,GetCharacterDto>();
-            CreateMap<AddCharacterDTo,Character>();
+            CreateMap<AddCharacterDto,Character>();
         }
     }
 }

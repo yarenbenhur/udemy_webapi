@@ -32,11 +32,39 @@ namespace uwebapi.Controllers
             return Ok(await _characterservice.GetCharacterById(id));
         }
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> AddCharacter(AddCharacterDTo newCharacter)
+        public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> AddCharacter(AddCharacterDto newCharacter)
         {
             return Ok(await _characterservice.AddCharacter(newCharacter));
 
 
         }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> UpdateCharacter(UpdateCharacterDto updatedCharacter)
+        {
+            var response = await _characterservice.UpdateCharacter(updatedCharacter);
+            if(response.Data==null)
+            {
+                return NotFound(response);
+
+            }
+
+
+            return Ok(response);
+        }
+        [HttpDelete("{id}")]
+         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> Delete(int id)
+        {
+           var response = await _characterservice.DeleteCharacter(id);
+            if(response.Data==null)
+            {
+                return NotFound(response);
+
+            }
+
+
+            return Ok(response);
+        }
     }
+
 }
